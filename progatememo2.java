@@ -166,3 +166,49 @@ for(int i = 0; i<names.length; i++){
   System.out.println("Hello" + names[i]);
 }
 ※lengthを用いることで、わざわざ条件式を書く必要がなくなる;
+
+拡張for文（入れ町の特別なfor文）;
+for(データ型 変数名 : 配列名){
+  繰り返す処理;
+}
+（例）
+String[] names = {"John", "Kate", "Bob"};
+for(String name: names){
+  System.out.println(name);
+}
+※拡張for文では配列の要素の値を順に代入する変数を用意する;
+変数nameに配列namesの要素が代入されていく;
+また自動的に要素の数だけ繰返しが行われる;
+（通常のfor文）
+String[] names = {"John", "Kate", "Bob"};
+for(int i = 0; i < names.length; i++){
+  System.out.println(names[i]);
+}
+
+
+
+総合問題;
+奇数の要素と偶数の要素の和をそれぞれ求め、出力しよう;
+int[] numbers = {1,4,6,9,13,16};
+
+
+答え;
+class Main {
+  public static void main(String[] args){
+    // 変数numbersに、与えられた数字の配列を代入;
+    int[] numbers = {1, 4, 6, 9, 13, 16};
+
+    int oddSum = 0;
+    int evenSum = 0;
+
+    for(int number: numbers){
+      if(number % 2 == 0){
+        evenSum += number;
+      }else{
+        oddSum += number;
+      }
+    }
+    System.out.println("奇数の和は" + "oddSum" + "です");
+    System.out.println("偶数の和は" + "evenSum" + "です");
+  }
+}
