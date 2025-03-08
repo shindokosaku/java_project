@@ -74,9 +74,10 @@ System,out.println(5 / 2);      >>>2;
 System.out.println(5.0 /2.0);   >>>2.5;
 ※int型とdouble型の計算が混ざったときはdouble型に変換され計算を行う;
 
-強制型変換キャスト;
+強制型変換キャスト; 強制的に型変換を行うことを「キャストという」;
 int number1 = 13;
 int number2 = 4;
 System.out.println((double)number1 / number2);
-※doubleによりデータ型が変わり、正確な値がわかるようになる;
+※（double）がないとint型同士の割り算となり、出力結果は3になってしまう;
+※double（小数以降も計算可能）によりデータ型が変わり、正確な値がわかるようになる;
 （出力結果:3.25）;

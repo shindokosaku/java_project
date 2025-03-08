@@ -212,3 +212,11 @@ class Main {
     System.out.println("偶数の和は" + "evenSum" + "です");
   }
 }
+
+Q.isHealthyメソッドを定義する中で、bmiが
+18.5 以上、かつ25.0になるようにしなさい;
+
+A.
+public static boolean isHealthy(double bmi){
+  return 18.5 <= bmi && bmi < 25.0;
+}
