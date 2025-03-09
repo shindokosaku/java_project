@@ -220,3 +220,134 @@ A.
 public static boolean isHealthy(double bmi){
   return 18.5 <= bmi && bmi < 25.0;
 }
+
+複数のクラスを使う;クラスは、メソッドという小さな部品をまとめる、より大きな部品;
+これまで→mainメソッドと同じクラス（Mainクラス）
+他のクラスのメソッドを利用することも可能;
+（例）
+class Main {
+  public static void main(String[] args){
+    Person.hello();         （※Personクラスのhelloメソッドを呼び出す「.」が必要！）
+    （クラス名）（メソッド名）
+  }
+}
+class Person{
+  public static void hello(){
+    System.out.println("Hello World");
+  }
+}
+※クラスが変わるということはファイルが変わるということを念頭におく;
+（クラス名は大文字にする＋ファイル名は「クラス名.java」という形にする）
+
+Personクラスのメソッドを呼び出す;
+
+class Main{
+  public static void main(String[] args){
+    String name = Person.fullName("Kate", "Jones");  ※PersonクラスのfullNameメソッドを呼び出し;
+    System.out.println(name);
+  }
+}
+
+class Person{
+  ・・・
+  public static String fullName(String firstName, String lastName){
+    return furstName + "" + lastName;
+  }
+  ・・・
+}
+出力結果;
+Kate Jones
+
+クラスについての補足;
+Javaはファイルではなく、クラスを実行する。また実行時にmainメソッドが呼ばれるが、
+mainメソッドを持つクラスしか実行できない。（mainメソッドのないクラスは他クラスから呼び出して使う。）
+またクラス名に関係なく、実行時にはmainメソッドが呼ばれる;
+
+Mainクラス{                    Mainクラスを実行すると...
+  mainメソッド{                         ↓
+                              mainメソッドが自動で実行される;
+  }
+}
+
+Personクラス{                  Personクラスを実行すると...
+  （mainメソッドなし）                    ↓
+}                             mainメソッドがないため、エラー発生（他のクラスから呼び出して使う）
+
+練習問題;
+ // printDataメソッドとfullNameメソッドの呼び出しを書き換えてください
+    printData(fullName("Kate", "Jones"), 27, 1.6, 50.0);
+    printData(fullName("John", "Christopher", "Smith"), 65, 1.75, 80.0);
+                          ↓            ↓
+    Person.printData(Person.fullName("Kate", "Jones"), 27, 1.6, 50.0);
+    Person.printData(Person.fullName("John", "Christopher", "Smith"), 65, 1.75, 80.0);
+    ※それぞれにPersonを付随する;
+    
+外部ライブラリ;
+Javaでは、他人が作ったクラスを利用することもできる;
+世界中のエンジニアが作った便利なメソッドを利用することで、
+開発の幅は一気に広がる;
+
+Mainクラスのmainメソッドから外部ライブラリに指示を出す;
+外部ライブラリを自分のプログラムに読み込むには、
+import を用いる;
+（例:Mathというクラスを読み込む時）
+import java.lang.Math;     ※java.langの部分はMathクラスの場所を示している
+class Main{
+  public static void main(String[] args){
+    ・・・
+  }
+}
+
+（例:maxメソッドを使ってみる
+    maxメソッドは因数に渡した二つの数値の大きい方を返してくれる）
+  import java.lang.Math;
+  class Main{
+    public static void main(String[] atgs){
+      int max = Math.max(3,8);
+                （外部から読み込んだMathクラス）
+    System.out.println("最大値は" + max + "です");
+    }
+  }
+  出力結果:最大値は8です
+
+  ※演習では引数の小数点以下を四捨五入して返すroundメソッドを使います;
+  これはdouble型の引数を渡し、Math.round（引数）のように使う;
+
+  // Mathクラスのroundメソッドを用いて、BMIを四捨五入して出力するようにしてください
+  System.out.println("BMIは" + Math.round(bmi) + "です");
+
+  ※「java.lang.Math」はよく利用されるため、importがなくても自動で読み込まれるようになっている;
+Mathクラス以外にも「java.lang.クラス名」となる外部ライブラリは全て自動で読み込まれる;
+
+Scanner: 初期化したものを代入した変数を使ってメソッドを呼び出す;
+scanner.next()とすると(Scanner.next()ではない)、コンソールに入力された文字列を
+受け取ることができる;
+（例）
+import java.util.Scanner;
+class Main{
+  public static void main(String[] args){
+    Scanner scanner = new Scanner(System.in);
+                      （scannerの初期化）
+    System.out.print("あなたの名前");
+    String name = scanner.next();
+      ↓（一旦処理を中断し、文字列の入力を受け取る、受け取ったら次の処理に進む）
+    System.out.println("あなたの名前は" + name + "です");
+  }
+}
+※「system.out.print」は改行せずに値を出力する命令;
+
+「数値の入力を受け取る」
+Scannerを用いて、整数と小数を受け取る方法;
+整数→「nextInt」メソッド;
+小数→「nextDouble」メソッド;
+
+public static void main(String[] args){
+  Scanner scanner = new Scanner(System.in);
+  System.out.print("年齢:");
+  int age = scanner.nextInt();
+  System.out.print("体重:");
+  double weight = scanner. nextDouble();
+  System.out.println("あなたの年齢は" + age + "です");
+  System.out.println("あなたの体重は" + weight + "です");
+}
+※scanner.nextのみだと文字列でそこにIntやDoubleを加えることで整数や少数を受け取ることが可能に!;
