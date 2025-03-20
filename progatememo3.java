@@ -167,7 +167,7 @@ Q.変数bmiに、bmiメソッドを用いてBMIを代入してください;
 A.double bmi = bmi(height, weight);
 
 （中間文）
-System.out.println("BMIは" bmi + "です");
+System.out.println("BMIは" + bmi + "です");
 
 ※メソッドを定義してくださいとくれば;
 public static double bmi(double height, double weight){
