@@ -19,6 +19,7 @@ Personオブジェクト
 オブジェクト指向で大事なのはクラスとインスタンスです。なお、インスタンスというのはオブジェクトの別名です。
 そしてクラスはインスタンスの設計図に当たります。
 インスタンス（オブジェクト）は、クラスという設計図をもとに作られるのです。
+（Personクラスに設計図を書き、Mainクラスでインスタンスを生成する;）
 
 ※インスタンス=実体
 
@@ -75,8 +76,9 @@ class Main {
 name:鈴木
 
 インスタンスメソッド (振る舞い)
-インスタンスメソッドは「public 戻り値の型 メソッド名()」と定義します。
 hello
+インスタンスメソッドは「public 戻り値の型 メソッド名()」と定義します。
+
 「Person.java」
 class Person { 
   public void hello() {
@@ -95,7 +97,7 @@ Person person1 = new Person();
 Person person2 = new Person();
 person1.hello();
 person2.hello();
-// インスタンスに対して呼び出す
+// インスタンスに対して呼び出す  この場合のインスタンスはperson1,person2がそれに該当する;
 
 インスタンスフィールドは、情報を格納しておく変数にすぎません。
 その変数はクラスの一番上に定義します。
@@ -118,3 +120,24 @@ person1.name = "Suzuki";  ※nameに値をセット
 
 System.out.println(person1.name);
 // 結果: Suzuki
+
+クラスの中でインスタンスを扱う;
+
+メソッド内でインスタンスフィールドにアクセスするためには「this」という特殊な変数を用います。
+thisはクラス内のメソッドの定義の中でのみ使用できます。
+thisはメソッドが呼ばれた時に、そのメソッドを呼び出しているインスタンスに置き換えられます。
+
+「Main.java」
+Person person = new Person();
+person.name = "Suzuki";
+person.hello();
+// 結果: こんにちは、私はSuzukiです
+
+
+「Person.java」
+class Person {
+  public String name;
+  public void hello() {
+    System.out.println("こんにちは、私は" + this.name + "です"); ※thisが「person.hello」の「person」を代入している;
+  }
+}
